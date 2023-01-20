@@ -1,13 +1,13 @@
 public class Pilot {
 
     private String name;
-    private String licenceNumber;
     private Rank rank;
+    private String licenceNumber;
 
-    public Pilot(String name, String licenceNumber, Rank rank) {
+    public Pilot(String name, Rank rank, String licenceNumber) {
         this.name = name;
-        this.licenceNumber = licenceNumber;
         this.rank = rank;
+        this.licenceNumber = licenceNumber;
     }
 
     public String getName() {

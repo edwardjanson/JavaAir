@@ -9,7 +9,7 @@ public class PilotTest {
 
     @Before
     public void before() {
-        pilot = new Pilot("Jane Doe", "1234AWEDF", Rank.CAPTAIN);
+        pilot = new Pilot("Shirley Banks", Rank.CAPTAIN, "1234AWEDF");
     }
 
     @Test
