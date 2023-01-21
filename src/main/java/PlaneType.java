@@ -1,8 +1,8 @@
 public enum PlaneType {
-    BOEING747(150, 2000),
-    BOEING787(250, 4000),
-    A320(170, 2500),
-    A330(300, 4500);
+    BOEING747(150, 6000),
+    BOEING787(250, 10000),
+    A320(170, 6800),
+    A330(300, 12000);
 
     private final int capacity;
     private final double totalWeight;
