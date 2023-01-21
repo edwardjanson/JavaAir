@@ -14,7 +14,7 @@ public class PilotTest {
 
     @Test
     public void getName() {
-        assertEquals("Jane Doe", pilot.getName());
+        assertEquals("Shirley Banks", pilot.getName());
     }
 
     @Test
@@ -25,5 +25,10 @@ public class PilotTest {
     @Test
     public void getRank() {
         assertEquals(Rank.CAPTAIN, pilot.getRank());
+    }
+
+    @Test
+    public void flyPlane() {
+        assertEquals("I am flying a plane!", pilot.flyPlane());
     }
 }

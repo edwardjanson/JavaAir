@@ -29,6 +29,44 @@ public class Flight {
         this.arrivalTime = arrivalTime;
     }
 
+    public String bookPassenger(Passenger passenger, Flight flight) {
+        double baggageSpace = FlightManager.baggageWeightRemaining(flight);
+        double baggageWeight = FlightManager.baggageWeightPerPassenger(flight);
+
+        if (remainingSeats() != 0) {
+            if (passenger.getBagCount() * baggageWeight > baggageSpace) {
+                return "Passenger can be booked in but there is not sufficient space for baggage.";
+            }
+
+            passenger.setFlight(flight);
+
+            ArrayList<Integer> availableSeats = new ArrayList<Integer>();
+            for (int i = 1; i <= plane.getPlaneType().getCapacity(); i++) {
+                availableSeats.add(i);
+            }
+
+            for (Passenger passengerLooped : passengers) {
+                int passengerSeatNumber = passengerLooped.getSeatNumber();
+                if (availableSeats.contains(passengerSeatNumber)) {
+                    availableSeats.remove((Integer) passengerSeatNumber);
+                }
+            }
+
+            Collections.shuffle(availableSeats);
+            passenger.setSeatNumber(availableSeats.get(0));
+            passengers.add(passenger);
+
+            return "Passenger successfully booked in.";
+        }
+
+        return "There are no more seats available for this flight.";
+    }
+
+    public int remainingSeats() {
+        int flightCapacity = plane.getPlaneType().getCapacity();
+        return flightCapacity - passengers.size();
+    }
+
     public ArrayList<Pilot> getPilots() {
         return pilots;
     }
@@ -63,29 +101,5 @@ public class Flight {
 
     public LocalDateTime getDepartureTime() {
         return departureTime;
-    }
-
-    public String bookPassenger(Passenger passenger, Flight flight) {
-        if (plane.getPlaneType().getCapacity() > passengers.size()) {
-            passenger.setFlight(flight);
-
-            ArrayList<Integer> availableSeats = new ArrayList<Integer>();
-            for (int i = 1; i <= plane.getPlaneType().getCapacity(); i++) {
-                availableSeats.add(i);
-            }
-
-            for (Passenger passengerLooped : passengers) {
-                if (availableSeats.contains(passengerLooped.getSeatNumber())) {
-                    availableSeats.remove(passengerLooped.getSeatNumber());
-                }
-            }
-
-            Collections.shuffle(availableSeats);
-            passenger.setSeatNumber(availableSeats.get(0));
-            passengers.add(passenger);
-            return "Passenger successfully booked in.";
-        }
-
-        return "There are no more seats available for this flight.";
     }
 }

@@ -12,6 +12,6 @@ public class PlaneTypeTest {
 
     @Test
     public void getTotalWeight() {
-        assertEquals(2000, PlaneType.BOEING747.getTotalWeight(), 0.0);
+        assertEquals(6000, PlaneType.BOEING747.getTotalWeight(), 0.0);
     }
 }
